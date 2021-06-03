@@ -1,12 +1,16 @@
 .rotateRight {
     animation: rotateRight 0.3s ease;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> d50cf8c487dae237be9234d959a9d7430af2e584
     transform: rotate( 90deg );
 }
 
 @keyframes rotateRight {
     0% { transform: rotate( 0deg ); }
     100% { transform: rotate( 90deg ); }
+<<<<<<< HEAD
 =======
     transform: rotate(90deg);
 }
@@ -15,17 +19,23 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(90deg); }
 >>>>>>> eacaccd3865fa86ba0a0e96ce481b5e7d0c06caa
+=======
+>>>>>>> d50cf8c487dae237be9234d959a9d7430af2e584
 }
 
 .unrotateRight {
     animation: unrotateRight 0.3s ease;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> d50cf8c487dae237be9234d959a9d7430af2e584
     transform: rotate( 0deg );
 }
 
 @keyframes unrotateRight {
     0% { transform: rotate( 90deg ); }
     100% { transform: rotate( 0deg ); }
+<<<<<<< HEAD
 =======
     transform: rotate(0deg);
 }
@@ -34,6 +44,8 @@
     0% { transform: rotate(90deg); }
     100% { transform: rotate(0deg); }
 >>>>>>> eacaccd3865fa86ba0a0e96ce481b5e7d0c06caa
+=======
+>>>>>>> d50cf8c487dae237be9234d959a9d7430af2e584
 }
 
 .showLeft {
@@ -76,6 +88,7 @@
     0% { opacity: 1; }
     100% { opacity: 0; }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 }
 
@@ -92,4 +105,6 @@
         color: $black;
     }
 >>>>>>> eacaccd3865fa86ba0a0e96ce481b5e7d0c06caa
+=======
+>>>>>>> d50cf8c487dae237be9234d959a9d7430af2e584
 }

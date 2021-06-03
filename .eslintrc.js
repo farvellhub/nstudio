@@ -1,5 +1,8 @@
 module.exports = {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> d50cf8c487dae237be9234d959a9d7430af2e584
 	"env": {
 		"browser": true,
 		"commonjs": true,
@@ -23,6 +26,7 @@ module.exports = {
 			"always"
 		]
 	}
+<<<<<<< HEAD
 =======
     "env": {
         "browser": true,
@@ -48,4 +52,6 @@ module.exports = {
         ]
     }
 >>>>>>> eacaccd3865fa86ba0a0e96ce481b5e7d0c06caa
+=======
+>>>>>>> d50cf8c487dae237be9234d959a9d7430af2e584
 };

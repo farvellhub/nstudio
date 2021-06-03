@@ -2,6 +2,9 @@
 /******/ 	var __webpack_modules__ = ({
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> d50cf8c487dae237be9234d959a9d7430af2e584
 /***/ "./node_modules/@farvell/jflow-core/index.js":
 /*!***************************************************!*\
   !*** ./node_modules/@farvell/jflow-core/index.js ***!
@@ -606,6 +609,7 @@ module.exports = class Style {
 		return this.elements;
 	}
 }
+<<<<<<< HEAD
 =======
 /***/ "./src/handler.js":
 /*!************************!*\
@@ -974,6 +978,8 @@ var Lightbox = /*#__PURE__*/function () {
 
 
 >>>>>>> eacaccd3865fa86ba0a0e96ce481b5e7d0c06caa
+=======
+>>>>>>> d50cf8c487dae237be9234d959a9d7430af2e584
 
 /***/ }),
 
@@ -2121,6 +2127,9 @@ var __webpack_exports__ = {};
   \*********************/
 __webpack_require__.r(__webpack_exports__);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> d50cf8c487dae237be9234d959a9d7430af2e584
 /* harmony import */ var _farvell_jflow_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @farvell/jflow-core */ "./node_modules/@farvell/jflow-core/index.js");
 /* harmony import */ var _farvell_jflow_core__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_farvell_jflow_core__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var typed_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! typed.js */ "./node_modules/typed.js/lib/typed.js");
@@ -2128,6 +2137,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_index_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./styles/index.scss */ "./src/styles/index.scss");
 // Import modules
 
+<<<<<<< HEAD
 =======
 /* harmony import */ var _handler__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./handler */ "./src/handler.js");
 /* harmony import */ var _lightbox__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./lightbox */ "./src/lightbox.js");
@@ -2138,12 +2148,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 >>>>>>> eacaccd3865fa86ba0a0e96ce481b5e7d0c06caa
+=======
+>>>>>>> d50cf8c487dae237be9234d959a9d7430af2e584
  // Webpack styles
 
  // Initialize menu event.
 
 var initMenu = function initMenu() {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> d50cf8c487dae237be9234d959a9d7430af2e584
   var menu = new _farvell_jflow_core__WEBPACK_IMPORTED_MODULE_0__.Handler({
     element: "menu",
     css: ["hideLeft", "showLeft"]
@@ -2152,6 +2167,7 @@ var initMenu = function initMenu() {
     css: ["unrotateRight", "rotateRight"]
   });
   return menu.onClick("menu-control");
+<<<<<<< HEAD
 =======
   return new Promise(function (resolve) {
     var menu = new _handler__WEBPACK_IMPORTED_MODULE_0__.default({
@@ -2182,11 +2198,16 @@ var initLightbox = function initLightbox() {
     resolve(lightbox.listen());
   });
 >>>>>>> eacaccd3865fa86ba0a0e96ce481b5e7d0c06caa
+=======
+>>>>>>> d50cf8c487dae237be9234d959a9d7430af2e584
 }; // Initialize document event.
 
 
 var initDocument = function initDocument() {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> d50cf8c487dae237be9234d959a9d7430af2e584
   var document = new _farvell_jflow_core__WEBPACK_IMPORTED_MODULE_0__.Handler({
     element: "document",
     css: ["disappear", "appear"]
@@ -2195,6 +2216,7 @@ var initDocument = function initDocument() {
     css: "disappear"
   });
   return document.onTimeout(900);
+<<<<<<< HEAD
 =======
   return new Promise(function (resolve) {
     var document = new _handler__WEBPACK_IMPORTED_MODULE_0__.default({
@@ -2207,11 +2229,16 @@ var initDocument = function initDocument() {
     resolve(document.timeout(900));
   });
 >>>>>>> eacaccd3865fa86ba0a0e96ce481b5e7d0c06caa
+=======
+>>>>>>> d50cf8c487dae237be9234d959a9d7430af2e584
 }; // Main function.
 
 
 window.addEventListener("load", function () {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> d50cf8c487dae237be9234d959a9d7430af2e584
   initMenu().then(initDocument()).then(new _farvell_jflow_core__WEBPACK_IMPORTED_MODULE_0__.Lightbox({
     images: "grid-image",
     texts: "grid-caption",
@@ -2220,12 +2247,15 @@ window.addEventListener("load", function () {
 }); // Typed.js
 
 new (typed_js__WEBPACK_IMPORTED_MODULE_1___default())("#typed", {
+<<<<<<< HEAD
 =======
   initMenu().then(initLightbox()).then(initDocument());
 }); //Typed.js
 
 new (typed_js__WEBPACK_IMPORTED_MODULE_2___default())("#typed", {
 >>>>>>> eacaccd3865fa86ba0a0e96ce481b5e7d0c06caa
+=======
+>>>>>>> d50cf8c487dae237be9234d959a9d7430af2e584
   strings: ["d", "designers.", "d", "developers.", "", "you!"],
   typeSpeed: 90,
   backSpeed: 50,
