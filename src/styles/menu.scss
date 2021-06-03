@@ -1,0 +1,41 @@
+.menu {
+    background-color: $black;
+    width: $fixed-size;
+    height: $fixed-height;
+    left: -$fixed-size;
+    z-index: 1004;
+
+    @media screen and (min-width: $break-small + 100px) {
+        width: $break-small;
+    }
+}
+
+.menu-close {
+    @media screen and (min-width: $break-small + 100px) {
+        display: none;
+    }
+}
+
+.menu-link {
+    display: block;
+    width: $fixed-size;
+    font-size: $font-big;
+    line-height: $header;
+    color: $gray;
+    text-align: center;
+    transition: all 0.1s ease;
+
+    &:hover { 
+        color: lighten($black, 10%);
+        background-color: darken($gray, 10%);
+    }
+
+    @media screen and (min-width: $break-small + 100px) {
+        width: $break-small;
+    }
+
+    @media screen and (min-width: $break-large) {
+        font-size: $button;
+        line-height: $header-big;
+    }
+}

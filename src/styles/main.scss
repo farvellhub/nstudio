@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Dosis:300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap');
+
+* { 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*:focus { outline: none; }
+
+html { 
+    font-size: 12px;
+    scroll-behavior: smooth;
+}
+
+a { text-decoration: none; }
+
+textarea { resize: none; }
+
+input,
+textarea {
+    font-family: "Montserrat", sans-serif;
+}
+
+.italic { font-style: italic; }
+.bold { font-weight: 700; }
+
+body {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 100vh;
+    font-family: "Montserrat", sans-serif;
+    background-color: $gray;
+    color: $black;
+    font-size: $font;
+    letter-spacing: 0.05rem;
+    z-index: 0;
+
+    @media screen and (min-width: $break-large) {
+        font-size: $font-big;
+    }
+}
+
+.section { padding-top: $header-big; }
+
+.footer {
+    align-self: flex-end;
+    width: $fixed-size;
+    font-size: $padding;
+    padding: $padding 0;
+    margin-top: $padding;
+    text-align: center;
+    color: $gray;
+    background-color: $black; 
+
+    @media screen and (min-width: $break-large) {
+        font-size: $font;
+    }
+}
+
+.button {
+    font-size: $button;
+    line-height: $button;
+    cursor: pointer;
+    color: $gray;
+    transition: all 0.2s ease;
+
+    &:hover { color: darken($gray, 25%); }
+}
+
+.fixed-button {
+    position: absolute;
+    top: $padding;
+    right: $padding-big;
+    padding: $padding $padding-big;
+    font-size: $button-big;
+    z-index: 1008;
+
+    @media screen and (min-width: $break-small) {
+        top: $padding-big;
+        right: $padding-big + $padding;
+    }
+}
+
+.wrapper {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: $size;
+    margin: 0 auto;
+    overflow-x: hidden;
+}
+
+.fixed-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: $fixed-size;
+    height: $fixed-height;
+}
+
+.title {
+    font-family: "Playfair Display", serif;
+    font-size: $button-big + $padding;
+    line-height: $button-big * 2;
+
+    @media screen and (max-width: $break-small) {
+        font-size: $button-big;
+    }
+}
+
+.horizontal-align {
+    position: absolute;
+    left: 50%;
+    height: auto;
+    transform: translateX(-50%);
+}
+
+.vertical-align {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.all-align {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

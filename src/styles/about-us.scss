@@ -1,0 +1,27 @@
+.about-us h2 {
+    padding-left: $padding;
+    border-left: $padding solid $black;
+}
+
+.about-us hr {
+    margin-bottom: $button-big;
+
+    @media screen and (max-width: $break-small) {
+        margin-bottom: $padding-big;
+    }
+}
+
+.about-us p {
+    width: 100%;
+    font-size: $font-big;
+    padding: $padding;
+    line-height: $button-big;
+    margin: 0 auto;
+
+    @media screen and (min-width: $break-xxl) {
+        width: $rel-size;
+        padding: $button-big;
+        font-size: $button;
+        line-height: $padding-big * 2;
+    }
+}
