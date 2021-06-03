@@ -1,0 +1,17 @@
+.home {
+    height: 60vh;
+    overflow: hidden;
+}
+
+.slogan {
+    width: 80%;
+    height: $header-big;
+    font-size: $button-big * 2;
+    font-weight: 400;
+    line-height: $header;
+
+    @media screen and (max-width: $break-large) {
+        font-size: $button * 2;
+        line-height: $button-big * 2;
+    }
+}

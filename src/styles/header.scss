@@ -1,0 +1,36 @@
+.header { 
+    position: fixed;
+    top: 0;
+    padding: $button-big 0;
+    width: inherit;
+    height: $header;
+    background-color: $gray;
+    z-index: 1001;
+}
+
+.menu-button {
+    color: $black;
+    float: right;
+
+<<<<<<< HEAD
+    &:hover { color: lighten( $black, 25% ); }
+=======
+    &:hover { color: lighten($black, 25%); }
+>>>>>>> eacaccd3865fa86ba0a0e96ce481b5e7d0c06caa
+}
+
+.logo { 
+    width: 80%;
+    float: left;
+}
+
+.logo img {
+    width: $padding-big + $padding;
+    float: left;
+}
+
+.logo figcaption {
+    font-family: "Dosis";
+    font-size: $font-big + 0.8rem;
+    line-height: $button + 0.4rem;
+}

@@ -1,0 +1,48 @@
+.contact-wrapper {
+    width: $rel-size; 
+    padding-bottom: $button-big;
+
+    @media screen and (max-width: $break-small) {
+        width: 100%;
+    }
+}
+
+.contact-title {
+    margin-bottom: $button * 2;
+    float: left;
+
+    @media screen and (max-width: $break-small) {
+        line-height: $button-big + $padding;
+    }
+}
+
+.contact-form {
+    width: 60%; 
+    float: right;
+
+    @media screen and (max-width: $break-xxl) {
+        width: 100%;
+        clear: right;
+    }
+}
+
+.contact-input,
+.contact-submit {
+    display: block;
+    width: 100%;
+    padding: $padding;
+    font-size: $font;
+    border-radius: 2px;
+    border: $font solid transparent;
+    margin-bottom: $font;
+}
+
+.contact-submit { 
+    font-size: $font-big;
+    background-color: rgb(55, 161, 64);
+
+    &:hover { 
+        color: #eee;
+        background-color: rgb(69, 187, 79); 
+    }
+}

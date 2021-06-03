@@ -1,0 +1,46 @@
+.grid-wrapper {
+    column-count: 1;
+    column-gap: $padding;
+
+    @media screen and (min-width: $break-small) {
+        column-count: 2;
+    }
+
+    @media screen and (min-width: $break-large) {
+        column-count: 3;
+    }
+
+    @media screen and (min-width: $break-xxl) {
+        column-count: 4;
+    }
+
+    @media screen and (min-width: ($break-xxl + $break-small)) {
+        column-count: 5;
+    }
+}
+
+.grid-container {
+    position: relative;
+    overflow: hidden;
+    break-inside: avoid;
+    margin-bottom: $padding;
+    cursor: pointer;
+
+    &:hover .grid-caption { bottom: 0; }
+}
+
+.grid-image,
+.grid-caption { width: 100%; }
+
+.grid-caption {
+    position: absolute;
+    bottom: -200%;
+    padding: $padding;
+    color: $gray;
+    background-color: $black;
+    transition: all 0.3s ease-out;
+
+    @media screen and (max-width: $break-small + 100px) {
+        font-size: $padding;
+    }
+}

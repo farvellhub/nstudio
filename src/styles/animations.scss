@@ -1,0 +1,95 @@
+.rotateRight {
+    animation: rotateRight 0.3s ease;
+<<<<<<< HEAD
+    transform: rotate( 90deg );
+}
+
+@keyframes rotateRight {
+    0% { transform: rotate( 0deg ); }
+    100% { transform: rotate( 90deg ); }
+=======
+    transform: rotate(90deg);
+}
+
+@keyframes rotateRight {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(90deg); }
+>>>>>>> eacaccd3865fa86ba0a0e96ce481b5e7d0c06caa
+}
+
+.unrotateRight {
+    animation: unrotateRight 0.3s ease;
+<<<<<<< HEAD
+    transform: rotate( 0deg );
+}
+
+@keyframes unrotateRight {
+    0% { transform: rotate( 90deg ); }
+    100% { transform: rotate( 0deg ); }
+=======
+    transform: rotate(0deg);
+}
+
+@keyframes unrotateRight {
+    0% { transform: rotate(90deg); }
+    100% { transform: rotate(0deg); }
+>>>>>>> eacaccd3865fa86ba0a0e96ce481b5e7d0c06caa
+}
+
+.showLeft {
+    animation: showLeft 0.3s ease;
+    left: 0;
+}
+
+@keyframes showLeft {
+    0% { left: -$fixed-size; }
+    100% { left: 0; }
+}
+
+.hideLeft {
+    animation: hideLeft 0.3s ease;
+    left: -$fixed-size;
+}
+
+@keyframes hideLeft {
+    0% { left: 0; }
+    100% { left: -$fixed-size; }
+}
+
+.appear {
+    animation: appear 0.2s ease-in;
+    opacity: 1;
+}
+
+@keyframes appear {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.disappear {
+    animation: disappear 0.2s ease-out;   
+    opacity: 0;
+    z-index: -1;
+}
+
+@keyframes disappear {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+<<<<<<< HEAD
+=======
+}
+
+@keyframes click {
+    0% { 
+        color: $gray;
+        background-color: rgba($black, 0.45); 
+    }
+    
+    15% { background-color: rgba($black, 0.75); }
+    
+    40% { 
+        background-color: rgba($black, 0.45); 
+        color: $black;
+    }
+>>>>>>> eacaccd3865fa86ba0a0e96ce481b5e7d0c06caa
+}
