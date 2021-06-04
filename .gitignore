@@ -1,17 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> d50cf8c487dae237be9234d959a9d7430af2e584
 .vscode/
 node_modules/
 *.log
 *.code-workspace
-<<<<<<< HEAD
-=======
-.vscode/
-node_modules/
-*.log
-*.code-workspace
->>>>>>> eacaccd3865fa86ba0a0e96ce481b5e7d0c06caa
-=======
->>>>>>> d50cf8c487dae237be9234d959a9d7430af2e584

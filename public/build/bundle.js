@@ -1,16 +1,13 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> d50cf8c487dae237be9234d959a9d7430af2e584
 /***/ "./node_modules/@farvell/jflow-core/index.js":
 /*!***************************************************!*\
   !*** ./node_modules/@farvell/jflow-core/index.js ***!
   \***************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+// Import library with common.js
 const Handler = __webpack_require__( /*! ./src/eventHandler */ "./node_modules/@farvell/jflow-core/src/eventHandler.js" ),
     Lightbox = __webpack_require__( /*! ./src/Lightbox/lightbox */ "./node_modules/@farvell/jflow-core/src/Lightbox/lightbox.js" ),
     Parallax = __webpack_require__( /*! ./src/parallaxText */ "./node_modules/@farvell/jflow-core/src/parallaxText.js" ),
@@ -41,19 +38,19 @@ module.exports = class Lightbox {
     // fetching data classes to control lightbox
     constructor( config ) {
         // Set param config
-		this.config = new LightboxConstructor( config );
+		this.config = (new LightboxConstructor( config ))._setLightboxConfig(config);
 
         // Initializing handler
         this.handler = new LightboxHandler({
             element: "lightbox",
             css: config.css
         });
-
+        console.log(this.handler, LightboxHandler)
         // Init roullette of images
         this._initRoullette();
 
         // Return listen lightbox
-        return this.listen();
+        /* return this.listen; */
     }
 
     // initializing roullette from fetched images
@@ -170,6 +167,7 @@ module.exports = class Lightbox {
 
     // Listener handler
     async listen() {
+        console.log(this.handler)
         this.handler.setAfterFunc( this._update, this ); 
         return this.handler.onClick( this.config.control, this.conditions )
 			.then( console.log( "Lightbox is working!" ) );
@@ -192,7 +190,7 @@ module.exports = class LightboxConstructor {
 		this._createLightbox();
 		this._styleLightbox( config.color );
 		
-		return this._setLightboxConfig( config )
+		/* return this._setLightboxConfig( config ) */
 	}
 	
     // Setting lightbox properties
@@ -221,10 +219,12 @@ module.exports = class LightboxConstructor {
 
 	// Putting lightbox html to DOM
 	_createLightbox() {
-		const wrapper = document.createElement( "div" );
+		const wrapper = document.createElement( "section" );
+		
+		wrapper.setAttribute( "id", "lightbox" );
+		wrapper.setAttribute( "class", "fixed-wrapper lightbox-wrapper" );
 
-		wrapper.innerHTML += 
-		`<section id="lightbox" class="fixed-wrapper lightbox-wrapper">
+		wrapper.innerHTML += `
 			<span class="button fixed-button lightbox-close lightbox-control">x</span>
 
 			<section class="wrapper lightbox">
@@ -241,7 +241,6 @@ module.exports = class LightboxConstructor {
 
 			<p id="lightbox-caption" class="horizontal-align lightbox-caption"></p>
 			<nav id="lightbox-roullette" class="horizontal-align roullette"></nav>
-		</section>
 		`;
 		
 		document.body.style.position = "relative";
@@ -263,50 +262,36 @@ module.exports = class LightboxConstructor {
 /*!**************************************************************************!*\
   !*** ./node_modules/@farvell/jflow-core/src/Lightbox/lightboxHandler.js ***!
   \**************************************************************************/
-/***/ ((module) => {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+const Handler = __webpack_require__(/*! ../eventHandler */ "./node_modules/@farvell/jflow-core/src/eventHandler.js");
 
 // Lightbox event handler 
-module.exports = class LightboxHandler {
+module.exports = class LightboxHandler extends Handler {
 
     // ... Animation { element: idName, css: className || [className] }
     constructor( ...animations ) {
 
-        // Init array of animations.
-        this.animations = [];
-        this._initAnimations( animations );
+        // Init animations.
+        super( animations );
 
-        // Return function to Lightbox logic
+       /*  const setAfterFunc = this.setAfterFunc 
+        const lastClicked = this.lastClicked
+        const onClick = this.onClick.bind
+
+        console.log(this, Handler)
+
         return Object.freeze(Object.create({
-
+            setAfterFunc,
+            lastClicked,
+            onClick
+        })); */
+        // Return function to Lightbox logic
+        /* return Object.freeze(Object.create({
             setAfterFunc: this.setAfterFunc.bind( this ),
             lastClicked: this.lastClicked.bind( this ),
             onClick: this.onClick.bind( this )
-
-        }));
-    }
-
-    // Setting animations object and css array
-    _initAnimations( animations ) {
-        animations.forEach(( a ) => {
-            this.animations.push({
-                element: document.getElementById( a.element ),
-                css: Array.isArray( a.css ) ? a.css : [ a.css ]
-            });
-        });
-        
-        this._setDefaultAnimation();
-        
-    }
-
-    // If css provided is an array
-    _setDefaultAnimation() {
-        if ( this.animations.length > 1 ) {
-            const animation = this.animations[0],
-                element = animation.element,
-                css = animation.css
-
-            this._animateByCss( element, css[0] );
-        }
+        })); */
     }
 
     // Needs for logic in Lightbox, controls roullette updates
@@ -333,18 +318,6 @@ module.exports = class LightboxHandler {
         });
 
         return isConditioned;
-    }
-
-    // Toggle class list item
-    _toggleAnimation( element, css ) { element.classList.toggle( css ); }
-
-    // For each animation, animate
-    _animate() {
-        this.animations.forEach(( a ) => {
-            a.css.forEach(( c ) => {
-                this._toggleAnimation( a.element, c );
-            });        
-        });
     }
 
     // Controls if have conditions
@@ -402,35 +375,34 @@ module.exports = class Handler {
         this._initAnimations( animations );
 
         // Return event methods
-        return Object.freeze(Object.create({
+        /* return Object.freeze(Object.create({
 
             onTimeout: this.onTimeout.bind( this ),
             onClick: this.onClick.bind( this ),
             onScroll: this.onScroll.bind( this )
 
-        }));
+        })); */
     }
 
     // Setting animations object and css array
     _initAnimations( animations ) {
-        animations.forEach(( a, i ) => {
+        animations.forEach(( anim, index ) => {
             this.animations.push({
-                element: document.getElementById( a.element ),
-                css: Array.isArray( a.css ) ? a.css : [ a.css ]
+                element: document.getElementById( anim.element ),
+                css: Array.isArray( anim.css ) ? anim.css : [ anim.css ]
             });
 
-            this._setDefaultAnimation( i );
+            this._setDefaultAnimation( index );
         });
     }
 
     // If css provided is not an array
     _setDefaultAnimation( index ) {
-        const animation = this.animations[ index ],
-            element = animation.element,
-            css = animation.css;
+		const animation = this.animations[ index ],
+			element = animation.element,
+			css = animation.css;
 
-        if ( css.length > 1 )
-            this._toggleAnimation( element, css[0] );
+		if ( css.length > 1 ) this._toggleAnimation( element, css[0] );
     }
 
     // Toggle class list item
@@ -533,6 +505,7 @@ module.exports = class Parallax {
         }));
     }
 
+	// Sets config params scroll direction, speed , offset
     _initConfig( config ) {
         config.forEach(( parallax ) => {
             this.config.push({
@@ -556,6 +529,7 @@ module.exports = class Parallax {
         });
     }
 
+	// Real scroll param with request Animation
     _render( offset ) {
         window.requestAnimationFrame(() => {
             this._updateMovement( offset );
@@ -588,11 +562,11 @@ module.exports = class Style {
 		this.styles = styles;
 
 		// Return set styles
-		return Object.freeze(Object.create({
+		/* return Object.freeze(Object.create({
 
 			setStyles: this.setStyles.bind( this )
 
-		}));
+		})); */
 
 	}
 
@@ -609,377 +583,7 @@ module.exports = class Style {
 		return this.elements;
 	}
 }
-<<<<<<< HEAD
-=======
-/***/ "./src/handler.js":
-/*!************************!*\
-  !*** ./src/handler.js ***!
-  \************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Handler)
-/* harmony export */ });
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-/* Generic event handler */
-var Handler = /*#__PURE__*/function () {
-  function Handler() {
-    _classCallCheck(this, Handler);
-
-    this.animations = [];
-
-    for (var _len = arguments.length, animations = new Array(_len), _key = 0; _key < _len; _key++) {
-      animations[_key] = arguments[_key];
-    }
-
-    this._initAnimations(animations);
-
-    return Object.freeze(Object.create({
-      setAfterFunc: this.setAfterFunc.bind(this),
-      timeout: this.timeout.bind(this),
-      lastClicked: this.lastClicked.bind(this),
-      onClick: this.onClick.bind(this)
-    }));
-  }
-
-  _createClass(Handler, [{
-    key: "_initAnimations",
-    value: function _initAnimations(animations) {
-      var _this = this;
-
-      animations.forEach(function (a, i) {
-        _this.animations.push({
-          element: document.getElementById(a.element),
-          css: Array.isArray(a.css) ? a.css : [a.css]
-        });
-
-        _this._initCss(i);
-      });
-    }
-  }, {
-    key: "_initCss",
-    value: function _initCss(index) {
-      var animation = this.animations[index],
-          element = animation.element,
-          css = animation.css;
-      if (css.length > 1) this._animateByCss(element, css[0]);
-    }
-  }, {
-    key: "setAfterFunc",
-    value: function setAfterFunc(func, that) {
-      for (var _len2 = arguments.length, args = new Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
-        args[_key2 - 2] = arguments[_key2];
-      }
-
-      this._afterFunc = function () {
-        if (typeof func == "function" && _typeof(that) == "object") return that[func.name](args);
-      };
-
-      return this;
-    }
-  }, {
-    key: "_isConditioned",
-    value: function _isConditioned(conditions) {
-      if (conditions === null) return false;
-      var classList = this.lastClick.element.classList;
-      var isConditioned = false;
-      Object.keys(conditions).forEach(function (c) {
-        if (classList.contains(conditions[c])) isConditioned = true;
-      });
-      return isConditioned;
-    }
-  }, {
-    key: "_animateByCss",
-    value: function _animateByCss(element, css) {
-      element.classList.toggle(css);
-    }
-  }, {
-    key: "_animate",
-    value: function _animate() {
-      var _this2 = this;
-
-      this.animations.forEach(function (a) {
-        a.css.forEach(function (c) {
-          _this2._animateByCss(a.element, c);
-        });
-      });
-    }
-  }, {
-    key: "_trigger",
-    value: function _trigger(conditions) {
-      if (this._isConditioned(conditions)) return;
-
-      this._animate();
-    }
-  }, {
-    key: "_execution",
-    value: function _execution() {
-      var conditions = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-
-      this._trigger(conditions);
-
-      if (typeof this._afterFunc === "function") this._afterFunc();
-    }
-  }, {
-    key: "timeout",
-    value: function timeout(time) {
-      var _this3 = this;
-
-      setTimeout(function () {
-        _this3._execution();
-      }, time);
-      return this;
-    }
-  }, {
-    key: "lastClicked",
-    value: function lastClicked() {
-      return this.lastClick;
-    }
-  }, {
-    key: "onClick",
-    value: function onClick(controls, conditions) {
-      var _this4 = this;
-
-      var keys = document.querySelectorAll(controls);
-      keys.forEach(function (e, i) {
-        e.addEventListener("click", function () {
-          _this4.lastClick = {
-            "element": e,
-            "index": i - 1
-          };
-          console.log("click to %o at index %o!", e, i - 1);
-
-          _this4._execution(conditions);
-        });
-      });
-      return this;
-    }
-  }]);
-
-  return Handler;
-}();
-
-
-
-/***/ }),
-
-/***/ "./src/lightbox.js":
-/*!*************************!*\
-  !*** ./src/lightbox.js ***!
-  \*************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Lightbox)
-/* harmony export */ });
-/* harmony import */ var _handler__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./handler */ "./src/handler.js");
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-
-
-var Lightbox = /*#__PURE__*/function () {
-  function Lightbox(data) {
-    _classCallCheck(this, Lightbox);
-
-    this._constructData(data);
-
-    this._constructHandler(data["animation"]);
-
-    this._initRoullette();
-
-    return Object.freeze(Object.create({
-      listen: this.listen.bind(this)
-    }));
-  }
-
-  _createClass(Lightbox, [{
-    key: "_constructData",
-    value: function _constructData(data) {
-      this.images = document.querySelectorAll(data["images"]);
-      this.texts = document.querySelectorAll(data["texts"]);
-      this.lightbox = {
-        photo: document.getElementById(data["photo"]),
-        caption: document.getElementById(data["caption"])
-      };
-      this.roullette = {
-        img: document.getElementById(data["roullette"]),
-        txt: []
-      };
-    }
-  }, {
-    key: "_constructHandler",
-    value: function _constructHandler(animation) {
-      this.handler = new _handler__WEBPACK_IMPORTED_MODULE_0__.default(animation);
-      this.exit = "lightbox-close";
-      this.conditions = {
-        roullette: "roullette-image",
-        previous: "previous-button",
-        next: "next-button",
-        length: 2
-      };
-      console.log(this.handler);
-    }
-  }, {
-    key: "_initRoullette",
-    value: function _initRoullette() {
-      var _this = this;
-
-      this.images.forEach(function (e, i) {
-        var _image$classList;
-
-        var image = e.cloneNode(),
-            text = _this.texts[i];
-
-        (_image$classList = image.classList).remove.apply(_image$classList, _toConsumableArray(image.classList));
-
-        image.classList.add("roullette-image", "lightbox-control");
-
-        _this.roullette.img.appendChild(image);
-
-        _this.roullette.txt.push(text.textContent);
-      });
-      this.lightboxSize = this.roullette.txt.length;
-    }
-  }, {
-    key: "_setPhoto",
-    value: function _setPhoto(src) {
-      this.lightbox.photo.src = src;
-    }
-  }, {
-    key: "_setCaption",
-    value: function _setCaption(text) {
-      this.lightbox.caption.textContent = text;
-    }
-  }, {
-    key: "_setLastPosition",
-    value: function _setLastPosition(position) {
-      this.lastPosition = position;
-    }
-  }, {
-    key: "_updateFromAll",
-    value: function _updateFromAll(position) {
-      var photo = this.roullette.img.children,
-          caption = this.roullette.txt;
-      console.log("photo: %o", photo[position]);
-      console.log("caption: %o", caption[position]);
-      console.log("position: %o", position);
-
-      this._setPhoto(photo[position].src);
-
-      this._setCaption(caption[position]);
-    }
-  }, {
-    key: "_updateFromPrevious",
-    value: function _updateFromPrevious() {
-      var position = this.lastPosition > 0 ? --this.lastPosition : this.lightboxSize;
-
-      this._updateFromAll(position);
-
-      return position;
-    }
-  }, {
-    key: "_updateFromNext",
-    value: function _updateFromNext() {
-      var position = this.lastPosition < this.lightboxSize ? ++this.lastPosition : 0;
-
-      this._updateFromAll(position);
-
-      return position;
-    }
-  }, {
-    key: "_updateFromRoullette",
-    value: function _updateFromRoullette(index) {
-      var length = this.conditions.length,
-          position = index - length;
-
-      this._updateFromAll(position);
-
-      return position;
-    }
-  }, {
-    key: "_updateFromImages",
-    value: function _updateFromImages(index) {
-      var length = this.conditions.length,
-          position = index - this.lightboxSize - length;
-
-      this._updateFromAll(position);
-
-      return position;
-    }
-  }, {
-    key: "_validUpdate",
-    value: function _validUpdate(classList, name) {
-      var conditions = this.conditions;
-      return classList.contains(conditions[name]);
-    }
-  }, {
-    key: "_updateFrom",
-    value: function _updateFrom(classList, index) {
-      var position;
-
-      if (this._validUpdate(classList, "roullette")) {
-        position = this._updateFromRoullette(index);
-      } else if (this._validUpdate(classList, "previous")) {
-        position = this._updateFromPrevious();
-      } else if (this._validUpdate(classList, "next")) {
-        position = this._updateFromNext();
-      } else {
-        position = this._updateFromImages(index);
-      }
-
-      this._setLastPosition(position);
-    }
-  }, {
-    key: "_update",
-    value: function _update() {
-      var lastClick = this.handler.lastClicked(),
-          classList = lastClick.element.classList;
-      if (classList.contains(this.exit)) return;
-
-      this._updateFrom(classList, lastClick.index);
-    }
-  }, {
-    key: "listen",
-    value: function listen() {
-      this.handler.setAfterFunc(this._update, this);
-      return this.handler.onClick(".lightbox-control", this.conditions);
-    }
-  }]);
-
-  return Lightbox;
-}();
-
-
->>>>>>> eacaccd3865fa86ba0a0e96ce481b5e7d0c06caa
-=======
->>>>>>> d50cf8c487dae237be9234d959a9d7430af2e584
 
 /***/ }),
 
@@ -1006,7 +610,7 @@ __webpack_require__.r(__webpack_exports__);
  * 
  *   typed.js - A JavaScript Typing Animation Library
  *   Author: Matt Boldt <me@mattboldt.com>
- *   Version: v2.0.11
+ *   Version: v2.0.12
  *   Url: https://github.com/mattboldt/typed.js
  *   License(s): MIT
  * 
@@ -1346,7 +950,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var _this4 = this;
 	
 	      if (this.pause.status === true) {
-	        this.setPauseStatus(curString, curStrPos, true);
+	        this.setPauseStatus(curString, curStrPos, false);
 	        return;
 	      }
 	      if (this.fadeOut) return this.initFadeOut();
@@ -1550,6 +1154,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      if (this.cursor) return;
 	      this.cursor = document.createElement('span');
 	      this.cursor.className = 'typed-cursor';
+	      this.cursor.setAttribute('aria-hidden', true);
 	      this.cursor.innerHTML = this.cursorChar;
 	      this.el.parentNode && this.el.parentNode.insertBefore(this.cursor, this.el.nextSibling);
 	    }
@@ -1563,7 +1168,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports, __nested_webpack_require_18173__) {
+/***/ (function(module, exports, __nested_webpack_require_18228__) {
 
 	'use strict';
 	
@@ -1579,7 +1184,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 	
-	var _defaultsJs = __nested_webpack_require_18173__(2);
+	var _defaultsJs = __nested_webpack_require_18228__(2);
 	
 	var _defaultsJs2 = _interopRequireDefault(_defaultsJs);
 	
@@ -2059,8 +1664,9 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
-/******/ 		if(__webpack_module_cache__[moduleId]) {
-/******/ 			return __webpack_module_cache__[moduleId].exports;
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
 /******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
@@ -2126,10 +1732,6 @@ var __webpack_exports__ = {};
   !*** ./src/main.js ***!
   \*********************/
 __webpack_require__.r(__webpack_exports__);
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> d50cf8c487dae237be9234d959a9d7430af2e584
 /* harmony import */ var _farvell_jflow_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @farvell/jflow-core */ "./node_modules/@farvell/jflow-core/index.js");
 /* harmony import */ var _farvell_jflow_core__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_farvell_jflow_core__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var typed_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! typed.js */ "./node_modules/typed.js/lib/typed.js");
@@ -2137,28 +1739,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_index_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./styles/index.scss */ "./src/styles/index.scss");
 // Import modules
 
-<<<<<<< HEAD
-=======
-/* harmony import */ var _handler__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./handler */ "./src/handler.js");
-/* harmony import */ var _lightbox__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./lightbox */ "./src/lightbox.js");
-/* harmony import */ var typed_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! typed.js */ "./node_modules/typed.js/lib/typed.js");
-/* harmony import */ var typed_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(typed_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _styles_index_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./styles/index.scss */ "./src/styles/index.scss");
-// Import modules
-
-
->>>>>>> eacaccd3865fa86ba0a0e96ce481b5e7d0c06caa
-=======
->>>>>>> d50cf8c487dae237be9234d959a9d7430af2e584
  // Webpack styles
 
  // Initialize menu event.
 
 var initMenu = function initMenu() {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> d50cf8c487dae237be9234d959a9d7430af2e584
   var menu = new _farvell_jflow_core__WEBPACK_IMPORTED_MODULE_0__.Handler({
     element: "menu",
     css: ["hideLeft", "showLeft"]
@@ -2167,47 +1752,10 @@ var initMenu = function initMenu() {
     css: ["unrotateRight", "rotateRight"]
   });
   return menu.onClick("menu-control");
-<<<<<<< HEAD
-=======
-  return new Promise(function (resolve) {
-    var menu = new _handler__WEBPACK_IMPORTED_MODULE_0__.default({
-      element: "menu",
-      css: ["hideLeft", "showLeft"]
-    }, {
-      element: "menu-button",
-      css: ["unrotateRight", "rotateRight"]
-    });
-    resolve(menu.onClick(".menu-control"));
-  });
-}; // Initialize lightbox event.
-
-
-var initLightbox = function initLightbox() {
-  return new Promise(function (resolve) {
-    var lightbox = new _lightbox__WEBPACK_IMPORTED_MODULE_1__.default({
-      images: ".grid-image",
-      texts: ".grid-caption",
-      animation: {
-        element: "lightbox",
-        css: ["disappear", "appear"]
-      },
-      photo: "lightbox-photo",
-      caption: "lightbox-caption",
-      roullette: "lightbox-roullette"
-    });
-    resolve(lightbox.listen());
-  });
->>>>>>> eacaccd3865fa86ba0a0e96ce481b5e7d0c06caa
-=======
->>>>>>> d50cf8c487dae237be9234d959a9d7430af2e584
 }; // Initialize document event.
 
 
 var initDocument = function initDocument() {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> d50cf8c487dae237be9234d959a9d7430af2e584
   var document = new _farvell_jflow_core__WEBPACK_IMPORTED_MODULE_0__.Handler({
     element: "document",
     css: ["disappear", "appear"]
@@ -2216,46 +1764,21 @@ var initDocument = function initDocument() {
     css: "disappear"
   });
   return document.onTimeout(900);
-<<<<<<< HEAD
-=======
-  return new Promise(function (resolve) {
-    var document = new _handler__WEBPACK_IMPORTED_MODULE_0__.default({
-      element: "document",
-      css: ["disappear", "appear"]
-    }, {
-      element: "loader",
-      css: "disappear"
-    });
-    resolve(document.timeout(900));
-  });
->>>>>>> eacaccd3865fa86ba0a0e96ce481b5e7d0c06caa
-=======
->>>>>>> d50cf8c487dae237be9234d959a9d7430af2e584
 }; // Main function.
 
 
 window.addEventListener("load", function () {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> d50cf8c487dae237be9234d959a9d7430af2e584
-  initMenu().then(initDocument()).then(new _farvell_jflow_core__WEBPACK_IMPORTED_MODULE_0__.Lightbox({
-    images: "grid-image",
-    texts: "grid-caption",
-    css: ["disappear", "appear"]
-  }));
+  initMenu().then(initDocument()).then(function () {
+    var x = new _farvell_jflow_core__WEBPACK_IMPORTED_MODULE_0__.Lightbox({
+      images: "grid-image",
+      texts: "grid-caption",
+      css: ["disappear", "appear"]
+    });
+    x.listen();
+  });
 }); // Typed.js
 
 new (typed_js__WEBPACK_IMPORTED_MODULE_1___default())("#typed", {
-<<<<<<< HEAD
-=======
-  initMenu().then(initLightbox()).then(initDocument());
-}); //Typed.js
-
-new (typed_js__WEBPACK_IMPORTED_MODULE_2___default())("#typed", {
->>>>>>> eacaccd3865fa86ba0a0e96ce481b5e7d0c06caa
-=======
->>>>>>> d50cf8c487dae237be9234d959a9d7430af2e584
   strings: ["d", "designers.", "d", "developers.", "", "you!"],
   typeSpeed: 90,
   backSpeed: 50,
