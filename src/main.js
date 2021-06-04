@@ -20,6 +20,8 @@ const initMenu = () => {
 	return menu.onClick( "menu-control" );
 };
 
+
+
 // Initialize document event.
 const initDocument = () => {
 	const document = new Handler({
