@@ -1,11 +1,10 @@
 # NStudio
 
-Template web of art studio. Full responsive. Made it with JFlow.
-
+Template of portfolio web designed on minimalism design. Full responsive. Using Jflow.
 
 # Characteristics.
 
-· `Webpack4` as bundler.
+· `Webpack5` as bundler.
 
 · `image post-procesing`.
 
@@ -13,38 +12,23 @@ Template web of art studio. Full responsive. Made it with JFlow.
 
 · `babel7` as ES7 transpiler.
 
-=======
-Template of portfolio web focused on minimalism design. Full responsive.
-
-
 
 # Where to start.
 
-=======
 
 Download the `.zip` and extract it to your project folder.
 
 Run these scripts at the root directory.
 
     - npm install
-    - npm run dev
+    - npm run dev // We have problems with serve
 
 The last command above starts a webpack live server.
 
 Run `npm run-script build` to run development build. You can also run `npm run build-prod` for production environment.
-=======
-Run these scripts at the root directory.
-
-    - `npm install`
-    - `npm run-script start`
-    - `npm run-script watch`
-
-The last command above starts a webpack live server. You can also run `npm run-script build`.
-=======
 
 # Directories
 
-=======
 
 · `/public/build`: Webpack bundle.
 
@@ -54,16 +38,9 @@ The last command above starts a webpack live server. You can also run `npm run-s
 
 · `/src/main.js`: Entry point.
 
-=======
-
-· `/public/build`: Bundle of all js/scss archives.
-
-· `/public/icomoon`: Icomoon fonts and styles.
-
-· `/src`: Js/Scss classes are here.
-
-=======
 
 
-Feel free to use it. :)
-    
+Questions?
+----------
+
+If you have any questions, please feel free to contact me on discord Farvell⚡#3387.  
