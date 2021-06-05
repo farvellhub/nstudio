@@ -27,6 +27,7 @@ textarea {
 .bold { font-weight: 700; }
 
 body {
+	position: relative;
     display: flex;
     flex-wrap: wrap;
     min-height: 100vh;
