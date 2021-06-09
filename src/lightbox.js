@@ -8,13 +8,17 @@ export default class Lightbox {
 		this.handler = new LightboxHandler({
 			element: "lightbox",
 			css: config.css
+		},
+		{
+			element: "lightbox-close",
+			css: config.css
 		});
 		// Set param config
 		this._setLightboxConfig( config );
 		// Init roullette of images
 		this._initRoullette();
 
-		console.log( this.config );
+		console.dir( this.config );
 		// Return listen lightbox
 		return this.listen();
 	}
@@ -69,7 +73,7 @@ export default class Lightbox {
 	_setLastPosition( position ) { this.lastPosition = position; }
 
 	_updateFromAll() {
-		const photo = this.config.roullette.img.children,
+		const photo = this.config.roullette.images,
 			caption = this.config.roullette.txt;
 
 		this._setPhoto( photo.position.src );

@@ -1,9 +1,11 @@
-.lightbox-wrapper { z-index: 1005; }
+.lightbox-wrapper { 
+	z-index: 1005;
+	background-color: rgba($black, 0.9);
+}
 
 .lightbox {
     width: $fixed-size;
     height: $fixed-height;
-    background-color: rgba($black, 0.9);
 }
 
 .lightbox-photo-wrapper { 
@@ -97,4 +99,8 @@
     transition: all 0.1s ease-out;
 
     &:hover { top: 5%; }
+}
+
+@media screen and ( max-width: $break-small ) {
+    
 }

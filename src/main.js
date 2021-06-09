@@ -45,7 +45,8 @@ window.addEventListener( "load", () => {
 		.then( new Lightbox({
 
 			images: "grid-image",
-			texts: "grid-caption"
+			texts: "grid-caption",
+			css: [ "disappear", "appear" ]
 
 		})).then( console.log( "Is working..." ));
 });

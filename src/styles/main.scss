@@ -30,13 +30,15 @@ body {
 	position: relative;
     display: flex;
     flex-wrap: wrap;
+	width: 100vw;
     min-height: 100vh;
     font-family: "Montserrat", sans-serif;
     background-color: $gray;
     color: $black;
     font-size: $font;
+	overflow-x: hidden;
     letter-spacing: 0.05rem;
-    z-index: 0;
+    z-index: 1;
 
     @media screen and (min-width: $break-large) {
         font-size: $font-big;
@@ -73,14 +75,14 @@ body {
 .fixed-button {
     position: absolute;
     top: $padding;
-    right: $padding-big;
-    padding: $padding $padding-big;
+    right: ( $header * 2 );
+    padding: $padding $header;
     font-size: $button-big;
     z-index: 1008;
 
     @media screen and (min-width: $break-small) {
         top: $padding-big;
-        right: $padding-big + $padding;
+        right: $padding;
     }
 }
 

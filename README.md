@@ -1,46 +1,51 @@
-# NStudio
+<h1 align="center">Welcome to NStudio👋</h1>
+<p align="center">
+  <img alt="Version" src="https://img.shields.io/badge/version-1.0.3-blue.svg?cacheSeconds=2592000" />
+  <a href="#" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-green.svg" />
+  </a>
+</p>
 
-Template of portfolio web designed on minimalism design. Full responsive. Using Jflow.
+> Template of portfolio web designed on minimalism design. Full responsive. Using Jflow.
 
-# Characteristics.
+## Installation
 
-· `Webpack5` as bundler.
+- npm install
 
-· `image post-procesing`.
+## Where to start.
 
-· `post-css` as SASS transpiler.
+- npm run dev - to run development build.
+- npm run-script build to run development build 
+- npm run build-prod for production environment.
 
-· `babel7` as ES7 transpiler.
+## Directories
 
+· /public/build: Webpack bundle.
 
-# Where to start.
+· /src/modules: Js modules.
 
+· /src/styles: Scss classes.
 
-Download the `.zip` and extract it to your project folder.
+· /src/main.js: Entry point.
 
-Run these scripts at the root directory.
+## Characteristics.
 
-    - npm install
-    - npm run dev // We have problems with serve
+· Webpack5 as bundler.
 
-The last command above starts a webpack live server.
+· image post-procesing.
 
-Run `npm run-script build` to run development build. You can also run `npm run build-prod` for production environment.
+· post-css as SASS transpiler.
 
-# Directories
-
-
-· `/public/build`: Webpack bundle.
-
-· `/src/api`: Js modules.
-
-· `/src/styles`: Scss classes.
-
-· `/src/main.js`: Entry point.
+· babel7 as ES7 transpiler.
 
 
+## Show your support
 
-Questions?
-----------
+Give a ⭐️ if this project helped you!
 
-If you have any questions, please feel free to contact me on discord Farvell⚡#3387.  
+## Questions?
+
+If you have any questions, please feel free to contact me on discord Farvell⚡#3387.
+
+***
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
